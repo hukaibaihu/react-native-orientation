@@ -1,6 +1,6 @@
 {
   "name": "@ste7en/react-native-orientation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Listen to device orientation changes in React Native applications and programmatically set preferred orientations on a per screen basis",
   "main": "index.js",
   "types": "index.d.ts",
