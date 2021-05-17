@@ -6,7 +6,7 @@ Listen to device orientation changes in React Native applications and programmat
 ## Installing
 
 ```
-npm install react-native-orientation --save
+npm install @ste7en/react-native-orientation --save
 ```
 
 ## Linking Native Dependencies
@@ -23,9 +23,9 @@ Please note that you **still need to manually configure** a couple files even wh
 
 **iOS**
 
-1. Add `node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj` to your xcode project, usually under the `Libraries` group
+1. Add `node_modules/@ste7en/react-native-orientation/ios/RCTOrientation.xcodeproj` to your xcode project, usually under the `Libraries` group
 2. Add `libRCTOrientation.a` (from `Products` under `RCTOrientation.xcodeproj`) to build target's `Linked Frameworks and Libraries` list
-3. Add `$(SRCROOT)/node_modules/react-native-orientation/iOS/RCTOrientation/` to `Project Name` -> `Build Settings` -> `Header Search Paths`
+3. Add `$(SRCROOT)/node_modules/@ste7en/react-native-orientation/ios/RCTOrientation/` to `Project Name` -> `Build Settings` -> `Header Search Paths`
 
 
 **Android**
@@ -35,7 +35,7 @@ Please note that you **still need to manually configure** a couple files even wh
     ```
     ...
     include ':react-native-orientation', ':app'
-    project(':react-native-orientation').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-orientation/android')
+    project(':react-native-orientation').projectDir = new File(rootProject.projectDir, '../node_modules/@ste7en/react-native-orientation/android')
     ```
 
 2. In `android/app/build.gradle`
@@ -83,6 +83,10 @@ Add the following to your project's `AppDelegate.m`:
   // ...
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  while ([[UIDevice currentDevice] isGeneratingDeviceOrientationNotifications]) {
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+  }
+  
   return [Orientation getOrientation];
 }
   
@@ -117,7 +121,7 @@ Implement `onConfigurationChanged` method in `MainActivity.java`
 
 To use the `react-native-orientation` package in your codebase, you should use the Orientation module:
 ```javascript
-import Orientation from 'react-native-orientation';
+import Orientation from '@ste7en/react-native-orientation';
 ```
 
 ```javascript
